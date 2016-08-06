@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<launch>
+
+  <param name="robot_description" command="$(find xacro)/xacro.py '$(find tr5_description)/urdf/tr5_robot.urdf.xacro'" />
+  <node name="tr5_state_publisher" pkg="robot_state_publisher" type="state_publisher">
+  </node>
+
+  <node name="tr5_joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" >
+    <param name="rate" type="double" value="20.0" />
+    <param name="use_gui" value="True"/>
+  </node>
+
+
+
+  <param name="tr5_kinematics_description" command="$(find xacro)/xacro.py '$(find tr5_description)/urdf/tr5_robot_kinematics.urdf.xacro'" />
+  <node name="tr5_kinematics_state_publisher" pkg="robot_state_publisher" type="state_publisher">
+   <remap from="robot_description" to="tr5_kinematics_description" />
+   <remap from="joint_states" to="kin/joint_states" />
+
+  </node>
+
+
+  <node name="tr5_kinematics_joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" >
+    <param name="use_gui" value="True"/>
+    <param name="rate" type="double" value="20.0" />
+    <remap from="joint_states" to="kin/joint_states" />
+    <remap from="robot_description" to="tr5_kinematics_description" />
+
+  </node>
+
+</launch>

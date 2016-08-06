@@ -1,0 +1,6 @@
+#***************************** Made by Duarte Gonçalves and André Lourenço *********************************
+
+#  == Do Forward Kinematic ==
+sensor_msgs/JointState fjState
+---
+geometry_msgs/Pose fPose

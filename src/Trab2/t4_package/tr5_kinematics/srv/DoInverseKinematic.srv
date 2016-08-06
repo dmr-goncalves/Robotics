@@ -1,0 +1,6 @@
+#***************************** Made by Duarte Gonçalves and André Lourenço *********************************/
+
+#  == Do Inverse Kinematic ==
+geometry_msgs/Pose iPose
+---
+sensor_msgs/JointState ijState

@@ -1,0 +1,15 @@
+<launch>
+
+    <include file="$(find nxt_description)/launch/upload_nxt.launch" />
+
+    <!--<node name="steering_gui" pkg="rqt_robot_steering" type="rqt_robot_steering" />-->
+
+    <node name="nxt_robot" pkg="nxt_ros" type="nxt_ros.py"
+          output="screen" required="true" >
+          <rosparam file="$(find nxt_ros)/lego_robot.yaml" command="load" />
+    </node>
+
+    <node name="nxt_odometry" pkg="nxt_ros" type="base_odometry.py"
+          output="screen" required="true" />
+
+</launch>

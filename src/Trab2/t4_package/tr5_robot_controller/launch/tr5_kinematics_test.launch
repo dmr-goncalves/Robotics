@@ -1,0 +1,42 @@
+<launch>
+
+    <node name="tr5_robot_controller_node" pkg="tr5_robot_controller" type="tr5_robot_controller_node"
+          output="screen" required="true" >
+        <param name="select_kin_topic"    type="string" value="/kin_mode"/>
+        <param name="gui_joints_topic"    type="string" value="/gui_joints"/>
+        <param name="goal_joints_topic"   type="string" value="/goal_joints"/>
+        <param name="goal_pose_topic"     type="string" value="/goal_pose"/>
+        <param name="input_pose_topic"    type="string" value="/input_pose"/>
+        <param name="inverse_kinet_topic" type="string" value="/do_ik"/>
+        <param name="forward_kinet_topic" type="string" value="/do_fk"/>
+    </node>
+
+
+    <node name="tr5_kinematics_node" pkg="tr5_kinematics" type="tr5_kinematics_node"
+          output="screen" required="true" >
+        <param name="inverse_kinet_topic" type="string" value="/do_ik"/>
+        <param name="forward_kinet_topic" type="string" value="/do_fk"/>
+    </node>
+
+
+    <node name="rviz_node" pkg="rviz" type="rviz" />
+
+
+    <param name="robot_description" command="$(find xacro)/xacro '$(find tr5_description)/urdf/tr5_robot.urdf.xacro'" />
+
+
+    <node name="tr5_joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" >
+       <param name="use_gui" value="True"/>
+       <param name="rate" type="double" value="20.0" />
+       <remap from="joint_states" to="/gui_joints" />
+    </node>
+
+
+    <node name="tr5_state_publisher" pkg="robot_state_publisher" type="state_publisher">
+        <!-- UNCOMMENT THE FOLLOWING LINE TO USE REAL ROBOT -->
+        <!-- <remap from="joint_states" to="/real_joints" /> -->
+        <!-- UNCOMMENT THE FOLLOWING LINE TO USE RVIZ MODEL -->
+        <remap from="joint_states" to="/goal_joints" />
+    </node>
+
+</launch>

@@ -1,0 +1,4 @@
+SUBSYSTEMS=="usb", ATTRS{serial}=="FTXW7F2K", ATTRS{idVendor}=="0403", SYMLINK+="tr5arm_0", MODE="0777"
+SUBSYSTEMS=="usb", ATTRS{serial}=="FTXW9LIH", ATTRS{idVendor}=="0403", SYMLINK+="tr5arm_1", MODE="0777"
+SUBSYSTEMS=="usb", ATTRS{serial}=="FTXW9JV7", ATTRS{idVendor}=="0403", SYMLINK+="tr5arm_2", MODE="0777"
+SUBSYSTEMS=="usb", ATTRS{serial}=="FTXW7F4W", ATTRS{idVendor}=="0403", SYMLINK+="tr5arm_2", MODE="0777"

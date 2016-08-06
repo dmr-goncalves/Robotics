@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+
+    <!-- Load the URDF into the ROS Parameter Server -->
+
+    <!-- Load hardware interface -->
+    <node name="tr5_hardware_interface" pkg="tr5_control" type="tr5_control"
+	  respawn="false" output="screen">
+
+    </node>
+
+    <!-- Load joint controller configurations from YAML file to parameter server -->
+    <rosparam file="$(find tr5_control)/config/hardware_controllers.yaml" command="load"/>
+
+    <!-- Load the secondary controllers -->
+    <node name="controller_spawner_secondary" pkg="controller_manager" type="spawner" respawn="false"
+	  output="screen" args="- -stopped
+					    position_joint_mode_controller
+                        tr5_position_trajectory_controller
+					    " />
+
+</launch>

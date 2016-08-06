@@ -1,0 +1,19 @@
+<launch>
+    <node name="nxt_maze_solver" pkg="nxt_maze_solver" type="maze_solver_node"
+          output="screen"/>
+
+    <node name="line_detector" pkg="line_detector" type="line_detector_node"
+          output="screen"/>
+
+    <node name="magnetic_detector" pkg="magnetic_detector" type="magnetic_detector_node"
+          output="screen"/>
+
+    <node name="obstacle_detector" pkg="obstacle_detector" type="obstacle_detector_node"
+          output="screen"/>
+
+    <node name="motor_controller" pkg="motor_controller" type="motor_controller_node"
+          output="screen"/>
+
+    <node pkg="tf" type="static_transform_publisher" name="odomMap" args="-2.5 -2.5 0 0 0 0 1 /odom /map 100"/>
+
+</launch>

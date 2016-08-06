@@ -1,0 +1,6 @@
+#  == KINEMATIC MODE ==
+# 0 - Forward Kinematics
+# 1 - Inverse Kinematics
+uint8 mode
+---
+bool result

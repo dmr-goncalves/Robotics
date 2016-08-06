@@ -1,0 +1,31 @@
+<launch>
+
+    <include file="$(find nxt_description)/launch/upload_nxt.launch" />
+
+    <!--<node name="steering_gui" pkg="rqt_robot_steering" type="rqt_robot_steering" />-->
+
+    <node name="nxt_robot" pkg="nxt_ros" type="nxt_ros.py"
+          output="screen" required="true" >
+          <rosparam file="$(find nxt_ros)/lego_robot.yaml" command="load" />
+    </node>
+
+    <node name="nxt_odometry" pkg="nxt_ros" type="base_odometry.py"
+          output="screen" required="true" />
+
+    <node name="nxt_maze_solver" pkg="nxt_maze_solver" type="maze_solver_node"
+          output="screen"/>
+
+    <node name="line_detector" pkg="line_detector" type="line_detector_node"
+          output="screen"/>
+
+    <node name="magnetic_detector" pkg="magnetic_detector" type="magnetic_detector_node"
+          output="screen"/>
+
+    <node name="obstacle_detector" pkg="obstacle_detector" type="obstacle_detector_node"
+          output="screen"/>
+
+    <node name="motor_controller" pkg="motor_controller" type="motor_controller_node"
+          output="screen"/>
+
+    <node pkg="tf" type="static_transform_publisher" name="odomMap" args="-2.5 -2.5 0 0 0 0 1 /odom /map 100"/>
+</launch>

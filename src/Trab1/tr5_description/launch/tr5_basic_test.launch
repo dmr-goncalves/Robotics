@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<launch>
+
+  <param name="robot_description" command="$(find xacro)/xacro.py '$(find tr5_description)/urdf/tr5_robot_basic.urdf.xacro'" />
+  <node name="tr5_state_publisher" pkg="robot_state_publisher" type="state_publisher">
+  </node>
+
+  <node name="tr5_joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" >
+    <param name="use_gui" value="True"/>
+    <param name="rate" type="double" value="20.0" />
+  </node>
+
+</launch>
